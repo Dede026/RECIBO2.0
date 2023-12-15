@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PróLab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        #print{
+            display: none;
+        }
+        #dados{
+            display: block;
+        }
+        #navbar{
+            display: block;
+        }
+        @media print {
+            #print{
+                display: block;
+            }
+            #dados{
+                display: none;
+            }
+            #navbar{
+            display: none;
+        }
+        }
+    </style>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">PróLab</span>
+        </div>
+    </nav>
+    <!-- Container central -->
+    <div id="dados" class="container p-5 border">
+        <h1 class="text-center">Ordem de Serviço</h1>
+        <div class="container">
+            <div class="col-lg-4 mb-3">
+                <label for="clinica" class="form-label"><br></label>
+                <select class="form-select" id="clinica">
+                    <option selected>Clínica</option>
+                    <option value="37">37</option>
+                    <option value="PróSaude">PróSaude</option>
+                    
+                </select>
+            </div>
+        </div>
+        <h1 class="text-center">Trabalho</h1>
+        <div class="row">
+            <div class="col-lg-4 mb-3">
+                <label for="produtos" class="form-label"><br></label>
+                <select class="form-select" id="produtos">
+                    <option selected>Trabalho</option>
+                    <option value="Dentadura Superior">Dentadura Superior</option>
+                    <option value="Dentadura Inferior">Dentadura Inferior</option>
+                    <option value="Provisoria">Provisoria</option>
+                    <option value="Protocolo Superior">Protocolo Superior</option>
+                    <option value="Protocolo Inferior">Protocolo Inferior</option>
+                    <option value="Concerto">Concerto</option>
+                    <option value="Flex Superior">Flex Superior</option>
+                    <option value="Flex Inferior">Flex Inferior</option>
+                    <option value="Placa de Bruxismo">Placa de Bruxismo</option>
+                    <option value="Placa de Clareamento">Placa de Clareamento</option>
+                    
+                </select>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label for="paciente" class="form-label"><br></label>
+                <input type="int" class="form-control" id="Valor" placeholder="Valor">
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label for="paciente" class="form-label"><br></label>
+                <input type="text" class="form-control" id="paciente" placeholder="Nome do Paciente">
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label for="corDente" class="form-label"><br></label>
+                <input type="text" class="form-control" id="corDente" placeholder="Dentista">
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg mb-3 " onclick="adicionarProduto()">Adicionar Produto</button>
+        <button type="button" class="btn btn-secondary btn-lg mb-3" data-bs-toggle="modal" data-bs-target="#observacaoModal">Adicionar Observação</button>
+        <h1><br> Produtos</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Dentista</th>
+                        <th scope="col">Valor Unitário</th>
+                        <th scope="col">Remover</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaProdutosBody">
+                    <!-- Linhas da tabela aqui -->
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="btn btn-success btn-lg" onclick="gerarOrdem()">Gerar</button>
+    </div>
+
+    <!-- Modal para Adicionar Observação -->
+    <div class="modal fade " id="observacaoModal" tabindex="-1" aria-labelledby="observacaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="observacaoModalLabel">Adicionar Observação</h5>
+                    <button type="button " class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" id="observacaoTexto" rows="4" placeholder="Digite sua observação"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary " data-bs-dismiss="modal" onclick="adicionarObservacao()">Salvar Observação</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------->
+
+    <div id="print" class="container-fluid border border-dark p-3 table ">
+
+        <!--container principal-->
+        
+        <div class="container-fluid  ">
+          <div class="row">
+            <!-- Imagem -->
+            <div class="col">
+              <img src="../img/img1.png" alt="Prólab" class="w-50 img-fluid">
+            </div>
+            
+            <!-- Texto -->
+            <div class="col">
+              <h4 class="text-center">Pro Lab <br> </h4>
+                  <p class="text-center">Rua do Imperador 593 Centro <br> Petrópolis-Rj<br>Telefone: (24) 99833-7882 </p>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="container-fluid ">
+              
+    
+            <div class="container-fluid">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ordem de Serviço: <span id="ordemServiço">1</span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Clínica: <span id="infoClinica"> </span></th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Data: <span id="data"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                    </tbody>
+                </table>
+            </div>
+        
+         
+    
+
+
+
+
+            <div class="container-fluid border border-dark p-1">
+              
+    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Dentista</th>
+                            <th scope="col">Valor Unitário</th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaprint">
+                        <!-- Linhas da tabela aqui -->
+                    </tbody>
+                </table>
+                
+             </div>
+             <div class="container-fluid border border-dark mb-3 mt-3 p-1">
+                <h6>Valor Total: <span id="valorTotalPrint">0.00</span></h6>
+                
+
+             </div>
+
+
+
+             <div class="container-fluid border border-dark mt-3 p-1">
+                   <h6>Observação:</h6>
+                   <p><span id="observacaoPrint"></span></p>
+             </div>
+    
+    
+        
+    
+        <!--container principal-->
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        // Array para armazenar informações dos produtos
+        const produtosArray = [];
+        // Variável para armazenar a observação
+        let observacao = "";
+
+        // Função para adicionar produto
+        function adicionarProduto() {
+            // Obter os valores selecionados
+            const trabalho = document.getElementById("produtos").value;
+            const corDente = document.getElementById("corDente").value;
+            const paciente = document.getElementById("paciente").value;
+
+            // Criar objeto com os valores
+            const produto = {
+    trabalho: trabalho,
+    quantidade: 1,
+    corDente: corDente,
+    paciente: paciente,
+    valorUnitario: calcularValorUnitario(trabalho),
+};
+
+
+            // Adicionar objeto ao array
+            produtosArray.push(produto);
+
+            // Atualizar tabela de produtos
+            atualizarTabelaProdutos();
+
+            // Limpar campos após adicionar
+            limparCamposProduto();
+        }
+
+        // Função para atualizar a tabela de produtos
+        function atualizarTabelaProdutos() {
+            const tabelaProdutosBody = document.getElementById("tabelaProdutosBody");
+            const tabelaPrint = document.getElementById("tabelaprint");
+
+            // Limpar conteúdo atual
+            tabelaProdutosBody.innerHTML = "";
+            tabelaPrint.innerHTML = "";
+
+            // Adicionar linhas com base nos objetos no array
+            for (const produto of produtosArray) {
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${produto.trabalho}</td>
+                    <td>${produto.paciente}</td>
+                    <td>${produto.corDente}</td>
+                    <td>R$ ${produto.valorUnitario}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="removerProduto(this)">Remover</button></td>
+                `;
+
+                tabelaProdutosBody.appendChild(newRow);
+                const newRowPrint = newRow.cloneNode(true);
+                newRowPrint.removeChild(newRowPrint.lastElementChild);
+                tabelaPrint.appendChild(newRowPrint);
+            }
+        }
+
+        // Função para limpar campos do produto
+        function limparCamposProduto() {
+            document.getElementById("produtos").value = "Trabalho";
+            document.getElementById("paciente").value = "";
+            document.getElementById("corDente").value = "";
+            document.getElementById("Valor").value = "";
+            document.getElementById("clinica").value = "Clínica";
+        }
+
+        // Função para adicionar observação
+        function adicionarObservacao() {
+            // Obter a observação digitada
+            observacao = document.getElementById("observacaoTexto").value;
+            // Limpar o campo de observação após adicionar
+            document.getElementById("observacaoTexto").value = "";
+            // Fechar o modal
+            const modal = new bootstrap.Modal(document.getElementById("observacaoModal"));
+            modal.hide();
+        }
+
+        // Função para calcular o valor unitário com base no trabalho selecionado
+        function calcularValorUnitario(trabalho) {
+            // Substitua esta lógica pelo cálculo real com base nos seus dados
+            switch (trabalho) {
+                case "Dentadura Superior":
+            // Substitua "Valor" pelo id correto do seu input
+            var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+                case "Dentadura Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+                case "Provisoria":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+                case "Protocolo Superior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Protocolo Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Concerto":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Flex Superior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Flex Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Flex Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            
+                default:
+                    return 0.00;
+            }
+        }
+
+        // Função para remover a linha da tabela
+        function removerProduto(button) {
+            const row = button.closest('tr'); // Encontrar a linha atual
+            const index = Array.from(row.parentNode.children).indexOf(row);
+
+            // Remover o objeto correspondente do array
+            produtosArray.splice(index, 1);
+
+            // Remover a linha da tabela
+            row.parentNode.removeChild(row);
+
+            // Atualizar tabela após remover
+            atualizarTabelaProdutos();
+        }
+
+        // Função para gerar a ordem de serviço
+        function gerarOrdem() {
+        // Exibir informações dos produtos e observação
+        document.getElementById('data').innerHTML = dataAtual();
+        // Obter o valor do campo "clinica"
+        const clinica = document.getElementById("clinica").value;
+
+        // Atualizar o conteúdo do elemento span
+        document.getElementById("infoClinica").textContent = `${clinica}`;
+
+        // Obter e incrementar a ordem de serviço do HTML
+        let ordemServico = document.getElementById("ordemServiço");
+        ordemServico.textContent = parseInt(ordemServico.textContent) + 1;
+
+        // Atualizar tabela de produtos antes de calcular o valor total
+        atualizarTabelaProdutos();
+
+        // Calcular o valor total
+        const valorTotal = calcularValorTotal();
+
+        // Atualizar o valor total impresso
+        document.getElementById("valorTotalPrint").textContent = `R$ ${valorTotal}`;
+
+        // Exibir observação
+        const observacaoPrint = document.getElementById("observacaoPrint");
+        observacaoPrint.textContent = observacao;
+
+        // Imprimir
+        window.print();
+
+        // Limpar variáveis e campos
+        observacao = "";
+        document.getElementById("observacaoTexto").value = "";
+    }
+
+        function calcularValorTotal() {
+    let valorTotal = 0;
+
+    for (const produto of produtosArray) {
+        const valorUnitario = parseFloat(produto.valorUnitario);
+        const quantidade = parseFloat(produto.quantidade);
+
+        if (isNaN(valorUnitario) || isNaN(quantidade)) {
+            console.error(`Valores inválidos: valorUnitario=${produto.valorUnitario}, quantidade=${produto.quantidade}`);
+        } else {
+            const subtotal = valorUnitario * quantidade;
+            console.log(`Produto: ${produto.trabalho}, Subtotal: ${subtotal}`);
+            valorTotal += subtotal;
+        }
+    }
+
+    if (valorTotal > 1000) {
+        console.log(`Valor Total: ${valorTotal}`);
+        return valorTotal.toFixed(0); // Retornar o valor total sem casas decimais
+    } else {
+        console.log(`Valor Total: ${valorTotal.toFixed(2)}`);
+        return valorTotal.toFixed(2);
+    }
+}
+
+
+
+
+
+
+
+        function dataAtual() {
+            let data = new Date();
+            return data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear();
+        }
+    </script>
+</body>
+</html>
+
