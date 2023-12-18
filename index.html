@@ -27,7 +27,7 @@
         }
         }
     </style>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -67,6 +67,7 @@
                     <option value="Flex Inferior">Flex Inferior</option>
                     <option value="Placa de Bruxismo">Placa de Bruxismo</option>
                     <option value="Placa de Clareamento">Placa de Clareamento</option>
+                    <option value="Roach">Roach</option>
                     
                 </select>
             </div>
@@ -132,14 +133,13 @@
           <div class="row">
             <!-- Imagem -->
             <div class="col">
-              <img src="img1.png" alt="Prólab" class="w-50 img-fluid">
+              <img src="../img/img1.png" alt="Prólab" class="w-50 img-fluid">
             </div>
             
             <!-- Texto -->
             <div class="col">
-              <h4 class="text-center">Pro Lab <br> </h4>
-                  <p class="text-center">Rua do Imperador 593 Centro <br> Petrópolis-Rj<br>Telefone: (24) 99833-7882 </p>
-            </div>
+              <h4 class="text-center"><br> </h4>
+                  </div>
           </div>
         </div>
         
@@ -278,7 +278,7 @@
             document.getElementById("paciente").value = "";
             document.getElementById("corDente").value = "";
             document.getElementById("Valor").value = "";
-            document.getElementById("clinica").value = "Clínica";
+            
         }
 
         // Função para adicionar observação
@@ -387,6 +387,16 @@
                 // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
                 return 0.00;
             }
+            case "Roach":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
             
                 default:
                     return 0.00;
@@ -481,4 +491,3 @@
     </script>
 </body>
 </html>
-
