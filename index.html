@@ -27,7 +27,7 @@
         }
         }
     </style>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -40,15 +40,20 @@
     <!-- Container central -->
     <div id="dados" class="container p-5 border">
         <h1 class="text-center">Ordem de Serviço</h1>
-        <div class="container">
+        <div class="container row">
             <div class="col-lg-4 mb-3">
                 <label for="clinica" class="form-label"><br></label>
-                <select class="form-select" id="clinica">
-                    <option selected>Clínica</option>
-                    <option value="37">37</option>
-                    <option value="PróSaude">PróSaude</option>
-                    
+                    <label for="clinca" class="form-label"><br></label>
+                    <input type="text" class="form-control" id="clinica" placeholder="Clínica"> 
                 </select>
+            </div>
+            <div class="col-lg-4">
+                <label for="date" class="form-label"><br></label>
+                <input type="date" class="form-control" id="dataInput" required>
+            </div>
+            <div class="col-lg-4">
+                <label for="Ultima Nota" class="form-label"><br></label>
+                <input type="number" class="form-control" id="ultimanota"  placeholder="Última Nota" required>
             </div>
         </div>
         <h1 class="text-center">Trabalho</h1>
@@ -59,15 +64,27 @@
                     <option selected>Trabalho</option>
                     <option value="Dentadura Superior">Dentadura Superior</option>
                     <option value="Dentadura Inferior">Dentadura Inferior</option>
+                    <option value="Dentadura Sup+Inf">Dentadura Sup+Inf</option>
                     <option value="Provisoria">Provisoria</option>
+                    <option value="Provisoria Sup+Inf">Provisoria Sup+Inf</option>
                     <option value="Protocolo Superior">Protocolo Superior</option>
                     <option value="Protocolo Inferior">Protocolo Inferior</option>
-                    <option value="Concerto">Concerto</option>
+                    <option value="Protocolo Sup+Inf"> Protocolo Sup+Inf</option>
+                    <option value="Conserto">Conserto</option>
                     <option value="Flex Superior">Flex Superior</option>
                     <option value="Flex Inferior">Flex Inferior</option>
+                    <option value="Flex Sup+Inf"> Flex Sup+Inf</option>
                     <option value="Placa de Bruxismo">Placa de Bruxismo</option>
                     <option value="Placa de Clareamento">Placa de Clareamento</option>
-                    <option value="Roach">Roach</option>
+                    <option value="Roach Superior">Roach Superior</option>
+                    <option value="Roach Inferior">Roach Inferior</option>
+                    <option value="Roach Sup+Inf">Roach Sup+Inf</option>
+                    <option value="Ponte Movel Inferior">Ponte Móvel Inferior</option>
+                    <option value="Ponte Movel Superior">Ponte Móvel Superior</option>
+                    <option value="Ponte Móvel Dupla"> Ponte Móvel Dupla</option>
+                    <option value="Debito Anterior">Debito Anterior</option>
+
+
                     
                 </select>
             </div>
@@ -133,7 +150,7 @@
           <div class="row">
             <!-- Imagem -->
             <div class="col">
-              <img src="img1.png" alt="Prólab" class="w-50 img-fluid">
+              <img src="../img/img1.png" alt="Prólab" class="w-50 img-fluid">
             </div>
             
             <!-- Texto -->
@@ -157,7 +174,7 @@
                             <th scope="col">Clínica: <span id="infoClinica"> </span></th>
                         </tr>
                         <tr>
-                            <th scope="col">Data: <span id="data"></span></th>
+                            <th scope="col">Data: <span id="Date"></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -327,6 +344,16 @@
                 // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
                 return 0.00;
             }
+            case "Provisoria Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
                 case "Protocolo Superior":
                 var valorInput = document.getElementById("Valor");
             
@@ -347,7 +374,7 @@
                 // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
                 return 0.00;
             }
-            case "Concerto":
+            case "Conserto":
                 var valorInput = document.getElementById("Valor");
             
             // Verifica se o input foi encontrado e se o valor é numérico
@@ -387,7 +414,138 @@
                 // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
                 return 0.00;
             }
-            case "Roach":
+        
+            case "Dentadura Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Provisoria Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Protocolo Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Flex Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Roach Sup+Inf":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Ponte Móvel Dupla":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Ponte Movel Superior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Ponte Movel Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Debito Anterior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Roach Superior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Roach Inferior":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Roach Sup+Inf	":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Placa de Bruxismo":
+                var valorInput = document.getElementById("Valor");
+            
+            // Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+                return parseFloat(valorInput.value);
+            } else {
+                // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+                return 0.00;
+            }
+            case "Placa de Clareamento":
                 var valorInput = document.getElementById("Valor");
             
             // Verifica se o input foi encontrado e se o valor é numérico
@@ -421,7 +579,20 @@
         // Função para gerar a ordem de serviço
         function gerarOrdem() {
         // Exibir informações dos produtos e observação
-        document.getElementById('data').innerHTML = dataAtual();
+      
+        const dataInput = document.getElementById("dataInput").value;
+
+        // Atualizar o conteúdo do elemento span
+        const dataInputObj = new Date(dataInput);
+
+        // Adicionar um dia à data para compensar possíveis diferenças
+        dataInputObj.setDate(dataInputObj.getDate() + 1);
+
+        // Formatando a data no formato "dia/mês/ano"
+        const dataFormatada = dataInputObj.toLocaleDateString('pt-BR');
+
+        // Atualizar o conteúdo do elemento span com a data formatada
+        document.getElementById("Date").textContent = `${dataFormatada}`;
         // Obter o valor do campo "clinica"
         const clinica = document.getElementById("clinica").value;
 
@@ -484,10 +655,9 @@
 
 
 
-        function dataAtual() {
-            let data = new Date();
-            return data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear();
-        }
+        
     </script>
 </body>
 </html>
+
+
