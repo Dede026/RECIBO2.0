@@ -27,7 +27,7 @@
         }
         }
     </style>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -83,6 +83,7 @@
                     <option value="Ponte Movel Superior">Ponte Móvel Superior</option>
                     <option value="Ponte Móvel Dupla"> Ponte Móvel Dupla</option>
                     <option value="Debito Anterior">Debito Anterior</option>
+                    <option value="Pago">Pago</option>
 
 
                     
@@ -150,7 +151,7 @@
           <div class="row">
             <!-- Imagem -->
             <div class="col">
-              <img src="img1.png" alt="Prólab" class="w-50 img-fluid">
+              <img src="../img/img1.png" alt="Prólab" class="w-50 img-fluid">
             </div>
             
             <!-- Texto -->
@@ -505,6 +506,23 @@
                 // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
                 return 0.00;
             }
+            case "Pago":
+            var valorInput = document.getElementById("Valor");
+
+// Verifica se o input foi encontrado e se o valor é numérico
+            if (valorInput && !isNaN(parseFloat(valorInput.value))) {
+    // Obtém o valor do input como um número
+            var valor = parseFloat(valorInput.value);
+
+    // Converte o valor para negativo multiplicando por -1
+            var valorNegativo = valor * -1;
+
+    // Retorna o valor convertido para negativo
+            return valorNegativo;
+            } else {
+    // Se o input não for encontrado ou o valor não for numérico, retorna 0.00
+             return 0.00;
+            }
             case "Roach Superior":
                 var valorInput = document.getElementById("Valor");
             
@@ -659,5 +677,4 @@
     </script>
 </body>
 </html>
-
 
